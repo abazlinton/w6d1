@@ -6,7 +6,6 @@ public class LeagueTest{
   League league;
   Team team;
 
-
   @Before 
   public void before() {
     league = new League( "Premier League");

@@ -1,11 +1,14 @@
+import java.util.*;
+
 public class League{
 
   private String name;
-  private Team[] teams;
+  private ArrayList<Team> teams;
+  private int leaguePlaces = 24;
 
   public League( String name ){
     this.name = name;
-    this.teams = new Team[24];
+    this.teams = new ArrayList<Team>();
   }
 
   public String getName(){
@@ -14,30 +17,26 @@ public class League{
   }
 
   public int countTeams(){
-    int team_count = 0;
-    for ( Team team : teams ){
-      if ( team != null ) {
-        team_count++;
-      }
-    }
-    return team_count;
+    return this.teams.size();
 
   }
 
-  public int getNextSlot(){
-    return countTeams();
+  // public int getNextSlot(){
+  //   return countTeams();
+  // }
+
+  public boolean isLeagueFull(){
+    return this.countTeams() == this.leaguePlaces;
   }
 
   public void addTeam( Team team ){
-    if ( this.isLeagueFull() == false ) {
-      teams[ getNextSlot() ] = team;
-    } else {
-      return;
+    if ( isLeagueFull() == false ) { 
+      this.teams.add(team);
     }
   }
 
   // public boolean isLeagueFull(){
-  //   if ( this.countTeams() == this.teams.length ){
+  //   if ( this.countTeams() == this.leaguePlaces ){
   //     return true;
   //   } else {
   //     return false;
@@ -45,9 +44,7 @@ public class League{
     
   // }
 
-  public boolean isLeagueFull(){
-    return this.countTeams() == this.teams.length;
-  }
+  
 
   
 }
